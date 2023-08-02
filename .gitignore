@@ -1,0 +1,17 @@
+*.class
+bin/
+gen/
+build/
+out/
+build/
+# maven
+*.classpath
+*.project
+*.settings
+/target/
+local.properties
+##----------idea----------
+*.iml
+.idea/
+*.ipr
+*.iws
