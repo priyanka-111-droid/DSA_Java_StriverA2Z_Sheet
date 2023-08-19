@@ -1,3 +1,5 @@
+package Codestudio_ProblemOfTheDay.Easy;
+
 import java.util.Arrays;
 public class Aug19_Easy {
 
