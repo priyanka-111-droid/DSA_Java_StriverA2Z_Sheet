@@ -1,3 +1,5 @@
+//hashing using Map->less memory than array hashing
+
 import java.util.*;
 public class HighestLowest {
     //using Hashmap

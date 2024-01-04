@@ -1,3 +1,5 @@
+//hashing using array
+
 import java.util.Arrays;
 public class countFrequency {
     public static int[] countFrequency(int n, int x, int []nums){
