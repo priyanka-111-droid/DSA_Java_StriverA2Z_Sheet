@@ -1,15 +1,24 @@
+/*
+palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+Given a string s, return true if it is a palindrom
+ */
 public class checkPalindromeRecursion {
-    public static boolean isPalindrome(String str) {
-        // Write your code here.
-        return helper(0,str.length()-1,str);
-    }
-    private static boolean helper(int i,int j,String str){
-        if(i>=j){
-            return true;
+    public boolean isPalindrome(String s) {
+        int left = 0, right = s.length()-1;
+        while(left<right)
+        {
+            char l = s.charAt(left), r = s.charAt(right);
+            if(!Character.isLetterOrDigit(l))
+                left++;
+            else if(!Character.isLetterOrDigit(r))
+                right--;
+            else if(Character.toLowerCase(l)!=Character.toLowerCase(r))
+                return false;
+            else {
+                left++;
+                right--;
+            }
         }
-        if(str.charAt(i)==str.charAt(j)){
-            return helper(i+1,j-1,str);
-        }
-        return false;
+        return true;
     }
 }

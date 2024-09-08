@@ -1,9 +1,10 @@
-public class printNTimes {
-    public static void printNtimes(int n){
-        System.out.print("Coding Ninjas ");
+class printNTimes {
 
-        // Recursively calling printNtimes as long as 'n' > 1.
-        if(n>1)
-            printNtimes(n-1);
+    void printGfg(int N) {
+        System.out.print("GFG"+" ");
+        if(N<=1){
+            return;
+        }
+        printGfg(N-1);
     }
 }
