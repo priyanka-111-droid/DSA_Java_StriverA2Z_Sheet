@@ -1,19 +1,26 @@
-import java.util.* ;
-import java.io.*;
+/*
+Given an integer array nums, find the
+subarray with the largest sum, and return its sum.
 
+- kadane algorithm(optimized)
+ */
 public class MaximumSubarraySum {
-    //kadane algorithm
+
     public static long maxSubarraySum(int[] arr, int n) {
-        long maxEndingHere = arr[0];
-        long maxSoFar = arr[0];
-        for (int i = 1; i < arr.length; i++) {
-            maxEndingHere = Math.max(arr[i], arr[i] + maxEndingHere);
-            maxSoFar = Math.max(maxSoFar, maxEndingHere);
+        public int maxSubArray(int[] nums) {
+            int maxi = Integer.MIN_VALUE;
+            int sum = 0;
+            for(int i = 0;i<nums.length;i++){
+                sum+=nums[i];
+                if(sum>maxi){
+                    maxi = sum;
+                }
+
+                if(sum<0){
+                    sum=0;
+                }
+            }
+            return maxi;
         }
-        // If all numbers are negative, return the maximum element as the maximum subarray sum
-        if(maxSoFar<0){
-            maxSoFar=0;
-        }
-        return maxSoFar;
     }
 }

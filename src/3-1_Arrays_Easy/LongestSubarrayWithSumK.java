@@ -2,17 +2,16 @@ import java.util.* ;
 import java.io.*;
 public class LongestSubarrayWithSumK {
     //no sliding window as negative test cases also there
-    public static int getLongestSubarray(int []nums, int k) {
+    public static int lenOfLongSubarr(int A[], int N, int K) {
         Map<Integer, Integer> map = new HashMap<>();
         int sum = 0;
         int maxLen = 0;
-        int n = nums.length;
-        for(int i = 0; i < n; i++){
-            sum+=nums[i];
-            if(sum == k){
+        for(int i = 0; i < N; i++){
+            sum+=A[i];
+            if(sum == K){
                 maxLen = Math.max(maxLen, i+1);
             }
-            int rem = sum - k;
+            int rem = sum - K;
             if(map.containsKey(rem)){
                 int len = i - map.get(rem);
                 maxLen = Math.max(maxLen, len);

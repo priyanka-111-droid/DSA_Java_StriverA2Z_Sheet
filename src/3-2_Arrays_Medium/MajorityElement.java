@@ -1,3 +1,11 @@
+/*
+Given an array nums of size n, return the majority element.
+The majority element is the element that appears more than ⌊n / 2⌋ times.
+
+- hashmap
+- moore voting algo
+ */
+
 import java.util.HashMap;
 public class MajorityElement {
     /*
@@ -21,34 +29,31 @@ public class MajorityElement {
        }
        return 0;
     }
-    */
-    /* Method 2 - Moore voting algo(optimal)
-    * used to find the majority element in an array, which is an element that appears more than half of the time
-    * */
-    public static int majorityElement(int []v) {
-        //candidate and count keep track of the current candidate and its count
-        int candidate=0,count=0;
-        for(int i=0;i<v.length;i++){
-            if(count==0){
-                candidate=v[i];
-                count=1;
-            }
-            else if(candidate==v[i]){
+   */
+    public int majorityElement(int[] nums) {
+        //moore's algo
+        int candidate = 0, count = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (count == 0) {
+                candidate = nums[i];
+                count = 1;
+            } else if (candidate == nums[i]) {
                 count++;
-            }else{
+            } else {
                 count--;
             }
         }
-        // Verify if the candidate is the actual majority element by counting its occurences
+
+        //check if candidate is majority element by counting occurences
         count = 0;
-        for (int i=0;i<v.length;i++) {
-            if (v[i] == candidate) {
+        for (int i = 0; i < nums.length; i++) {
+            if (candidate == nums[i]) {
                 count++;
             }
         }
 
-        //check if its occurences is more than floor/2
-        if(count>(int)Math.floor(v.length/2)){
+        //check if occurences more than floor(n/2)
+        if (count > (int) (Math.floor(nums.length / 2))) {
             return candidate;
         }
         return -1;
