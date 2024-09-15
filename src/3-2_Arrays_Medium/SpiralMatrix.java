@@ -1,45 +1,42 @@
 import java.util.*;
 public class SpiralMatrix {
-    public static int[] spiralMatrix(int [][]MATRIX) {
-        int n = MATRIX.length;
-        int m = MATRIX[0].length;
-        int dir=0;
-        int top=0,bottom = n-1;
-        int left=0,right=m-1;
-        ArrayList<Integer> ans = new ArrayList<>();
+    public List<Integer> spiralOrder(int[][] matrix) {//O(mxn),O(1)
+        int rowCount = matrix.length;//m is row count
+        int colCount = matrix[0].length;//n is column count
+        int dir=0;//cover 4 possible directions
+        int top=0,bottom = rowCount-1;
+        int left=0,right=colCount-1;
+        List<Integer> ans = new ArrayList<>();
 
         while(top<=bottom && left<=right){
             if(dir==0){
+                //move left to right
                 for(int i=left;i<=right;i++){
-                    // System.out.print(MATRIX[top][i]+" ");
-                    ans.add(MATRIX[top][i]);
+                    ans.add(matrix[top][i]);
                 }
-                top+=1;
+                top+=1;//top row elements already added so inc by 1
             }else if(dir==1){
+                //move top to bottom
                 for(int i=top;i<=bottom;i++){
-                    // System.out.print(MATRIX[i][right]+" ");
-                    ans.add(MATRIX[i][right]);
+                    ans.add(matrix[i][right]);
                 }
                 right-=1;
             }else if(dir==2){
+                //move right to left
                 for(int i=right;i>=left;i--){
-                    //    System.out.print(MATRIX[bottom][i]+" ");
-                    ans.add(MATRIX[bottom][i]);
+                    ans.add(matrix[bottom][i]);
                 }
                 bottom-=1;
             }else if(dir==3){
+                //move bottom to top
                 for(int i=bottom;i>=top;i--){
-                    // System.out.print(MATRIX[i][left]+" ");
-                    ans.add(MATRIX[i][left]);
+                    ans.add(matrix[i][left]);
                 }
                 left+=1;
             }
             dir=(dir+1)%4;
         }
-        int[] res = new int[ans.size()];
-        for(int i=0;i<res.length;i++){
-            res[i] = ans.get(i);
-        }
-        return res;
+        return ans;
     }
+
 }

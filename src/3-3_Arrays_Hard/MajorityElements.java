@@ -1,3 +1,6 @@
+/*
+Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times.
+ */
 import java.util.*;
 public class MajorityElements{
     public static List< Integer > majorityElement(int []v) {
@@ -8,7 +11,8 @@ public class MajorityElements{
         List< Integer > res = new ArrayList<>();
         // Int ans[] is the array storing all elements
         // having a frequency greater than floor(n / 3),
-        // and int res[] is the array storing unique elements
+
+        // int res[] is the array storing unique elements
         // of array 'ans'.
 
         for(int i = 0; i < n; ++i) {

@@ -5,8 +5,6 @@ subarray with the largest sum, and return its sum.
 - kadane algorithm(optimized)
  */
 public class MaximumSubarraySum {
-
-    public static long maxSubarraySum(int[] arr, int n) {
         public int maxSubArray(int[] nums) {
             int maxi = Integer.MIN_VALUE;
             int sum = 0;
@@ -22,5 +20,4 @@ public class MaximumSubarraySum {
             }
             return maxi;
         }
-    }
 }
