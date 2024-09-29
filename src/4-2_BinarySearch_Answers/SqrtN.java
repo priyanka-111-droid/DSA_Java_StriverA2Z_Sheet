@@ -1,40 +1,33 @@
-import java.util.* ;
-import java.io.*;
+/*
+Given an integer n, find the square root of n. If n is not a perfect square, then return the floor value.
+
+ //optimal  - binary search
+ //low = 1 (smallest positive integer) since the square root is generally defined for positive numbers.
+ */
 
 public class SqrtN {
 
-    public static int sqrtN(long N) {
-		/*
-		brute force
-		*/
-        // int ans = 0;
-        // for (long i = 1; i <= N; i++) {
-        //     long val = i * i;
-        //     if (val <= (long) N) {
-        //         ans = (int) i;
-        //     } else {
-        //         break;
-        //     }
-        // }
-        // return ans;
-
-
-		/*
-		sqrt method
-		*/
-        // return (int)Math.sqrt(N);
-
-
-        //optimal  - binary search
-        long low=1,high=N;
+    public static int sqrtNBruteForce(long N) {
+        int ans = 0;
+        for (long i = 1; i <= N; i++) {
+            long val = i * i;
+            if (val <= (long) N) {
+                ans = (int) i;
+            } else {
+                break;
+            }
+        }
+        return ans;
+    }
+    public static long floorSqrtOptimal(long n) {
+        long low=1;
+        long high = n;
         while(low<=high){
             long mid = (low+high)/2;
             long val = mid*mid;
-            //we are not returning mid here as we want maximum number that is the sqrt
-            if(val<=N){
-                //remove left half,search for a larger number(in right half)
-                low = mid+1;
-            }else if(val>N){
+            if(val<=n){
+                low= mid+1;
+            }else{
                 high = mid-1;
             }
         }

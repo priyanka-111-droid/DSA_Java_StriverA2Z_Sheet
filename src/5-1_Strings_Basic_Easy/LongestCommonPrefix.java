@@ -1,46 +1,26 @@
+/*
+Write a function to find the longest common prefix string amongst an array of strings.
+If there is no common prefix, return an empty string "".
+
+- vertical scanning:O(S) where S is sum of all chars in string, O(1)
+ */
 import java.util.Arrays;
 public class LongestCommonPrefix {
-    public static String commonPrefix(String []str,int n){
-        // Sort the array of strings in lexicographical (alphabetical) order
+    public String longestCommonPrefixVerticalScanning(String[] strs) {
+        // Initialize prefix with the first string in the array.
+        String prefix = strs[0];
 
-
-        Arrays.sort(str);
-
-
-
-// Get the first (smallest) string and the last (largest) string in the sorted array
-
-
-        String s1 = str[0];
-        String s2 = str[str.length - 1];
-
-
-
-// Initialize a variable to keep track of the common prefix length
-
-
-        int i = 0;
-
-// Iterate through the characters of s1 and s2 while comparing them
-        while (i < s1.length() && i < s2.length()) {
-
-// If the characters at the current position are the same, continue to the next character
-            if (s1.charAt(i) == s2.charAt(i)) {
-                i++;
-            } else {
-// If the characters are different and it's the first character position (i.e., i == 0),
-// return "-1" to indicate no common prefix.
-                if (i == 0) {
-                    return "-1";
-                } else {
-                    // If the characters are different at some position other than the first,
-                    // break the loop to stop comparing further characters.
-                    break;
+        for(int i = 1;i<strs.length;i++){
+            // Keep checking if the current string starts with the prefix.
+            // If not, shorten the prefix by one character from the end.
+            while(strs[i].indexOf(prefix)!=0){
+                prefix = prefix.substring(0,prefix.length()-1);
+                // If prefix becomes empty, there is no common prefix,return "".
+                if (prefix.isEmpty()) {
+                    return "";
                 }
             }
         }
-
-// Return the common prefix of s1 and s2, which is the substring from the beginning up to position i.
-        return s1.substring(0, i);
+        return prefix;
     }
 }

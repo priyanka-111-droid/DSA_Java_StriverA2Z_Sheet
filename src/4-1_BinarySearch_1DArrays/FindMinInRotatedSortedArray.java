@@ -39,7 +39,7 @@ public class FindMinInRotatedSortedArray{
         // return ans;//has min element
 
         /*
-        better binary search- select leftmost element as min
+        better binary search - select leftmost element as min
         */
         int low = 0, high = arr.length - 1;
         int ans = Integer.MAX_VALUE;
@@ -58,7 +58,6 @@ public class FindMinInRotatedSortedArray{
             if (arr[low] <= arr[mid]) {
                 // keep the minimum:
                 ans = Math.min(ans, arr[low]);
-
                 // Eliminate left half:
                 low = mid + 1;
 

@@ -1,18 +1,26 @@
-//return max nesting depth of parenthesis in string.
+/*
+Given a valid parentheses string s, consider its primitive decomposition: s = P1 + P2 + ... + Pk, where Pi are primitive valid parentheses strings.
+Return s after removing the outermost parentheses of every primitive string in the primitive decomposition of s.
+ */
 public class RemoveOutermostParenthesis {
-    public static int maxDepth(String s) {
-        int maxDepth = 0; // Variable to store the maximum depth
-        int currentDepth = 0; // Variable to keep track of the current depth
+    public String removeOuterParentheses(String s) {
+        StringBuilder result = new StringBuilder();
+        int balance = 0;//tracks number of outermost patenthesis
 
-        for (int i = 0; i < s.length(); i++) {
-            char ch = s.charAt(i);
+        for (char ch : s.toCharArray()) {
             if (ch == '(') {
-                currentDepth++; // Increase depth when an opening parenthesis is encountered
-                maxDepth = Math.max(maxDepth, currentDepth); // Update maxDepth if needed
+                if (balance > 0) {
+                    result.append(ch); // Add '(' if not the outermost
+                }
+                balance++;
             } else if (ch == ')') {
-                currentDepth--; // Decrease depth when a closing parenthesis is encountered
+                balance--;
+                if (balance > 0) {
+                    result.append(ch); // Add ')' if not the outermost
+                }
             }
         }
-        return maxDepth;
+
+        return result.toString();
     }
 }
