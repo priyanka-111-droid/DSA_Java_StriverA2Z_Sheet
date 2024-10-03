@@ -1,52 +1,19 @@
-/****************************************************************
-
- Following is the class structure of the Node class:
-
- class Node {
- public int data;
- public Node next;
-
- Node()
- {
- this.data = 0;
- this.next = null;
- }
- Node(int data)
- {
- this.data = data;
- this.next = null;
- }
- Node(int data, Node next)
- {
- this.data = data;
- this.next = next;
- }
- }
-
- *****************************************************************/
-
+/**
+ * https://mostlyfocused.com/pages/articles/how_to_reverse_linked_list
+ */
 public class ReverseLLIteration
 {
-    public static Node reverseLinkedList(Node node)
-    {
-        /*
-        null<-1<-2<-3<-4<-head
-              c  n
-                 c  n
-                    c  n
-                       c
-        */
+    public ListNode reverseList(ListNode head) {
+        ListNode current = head;
+        ListNode prev = null;
 
-        Node prev = null;
-        Node current = node;
-        Node next = null;
-        while (current != null) {
-            next = current.next;
-            current.next = prev;
-            prev = current;
-            current = next;
+        while(current!=null){
+
+            ListNode temp = current.next;//need to save a reference to the next node in the sequence before we flip the pointer.
+            current.next = prev; // take each node's next pointer and swapping it from the node to the right, to the node on the left.
+            prev = current; //current node now becomes prev.
+            current = temp;//next node becomes current
         }
-        node = prev;
-        return node;
+        return prev; //since current is null, prev has new head pointer.
     }
 }

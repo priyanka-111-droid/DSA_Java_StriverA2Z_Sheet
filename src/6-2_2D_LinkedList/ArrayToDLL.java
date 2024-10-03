@@ -1,6 +1,6 @@
 public class ArrayToDLL {
     DLLNode constructDLL(int arr[]) {
-        // Code here
+        // initialize with first array element
         DLLNode head = new DLLNode(arr[0]);
         DLLNode current = head;
         for(int i = 1;i<arr.length;i++){

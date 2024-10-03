@@ -1,70 +1,33 @@
-/****************************************************************
-
- Following is the class structure of the Node class:
-
- class Node {
- public int data;
- public Node next;
-
- Node()
- {
- this.data = 0;
- this.next = null;
- }
-
- Node(int data)
- {
- this.data = data;
- this.next = null;
- }
-
- Node(int data, Node next)
- {
- this.data = data;
- this.next = next;
- }
- };
-
- *****************************************************************/
-
 public class LengthOfLoop
 {
-    public static int lengthOfLoop(Node head) {
-        // Write your code here
-
-        //base case
+    // Function to find the length of a loop in the linked list.
+    public int countNodesinLoop(Node head) {
         if(head==null || head.next==null){
             return 0;
         }
-
-        Node tortoise = head.next;
-        Node hare = head.next.next;
+        //detect loop
+        Node tortoise = head;
+        Node hare = head;
         while(hare!=null && hare.next!=null){
-            if(tortoise==hare){
+            hare = hare.next.next;
+            tortoise = tortoise.next;
+            if(hare==tortoise){
+                //cycle detected
                 break;
             }
-            tortoise=tortoise.next;
-            hare=hare.next.next;
         }
-
-        // No cycle found
-        if (hare == null || hare.next == null) {
+        if(hare==null || hare.next==null){
             return 0;
         }
-
-
-        // Count the length of the cycle
-
-        //the code initializes the count variable to 1 (since we are
-        // already on the first node of the cycle) and positions the hare pointer
-        // to start moving through the cycle.
-        int count = 1;
+        //count length of loop
+        //Once a loop is detected, you can simply move one pointer (e.g., hare) around the loop while counting until it meets tortoise again
+        //no need to move both tortoise and hare which would unnecessarily complicate it.
+        int count = 1;  //Start counting from the meeting point
         hare = hare.next;
-        while (tortoise != hare) {
+        while(tortoise!=hare){
+            count+=1;
             hare = hare.next;
-            count++;
         }
-
         return count;
     }
 }

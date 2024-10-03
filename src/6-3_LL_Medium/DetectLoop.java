@@ -1,54 +1,26 @@
-/****************************************************************
-
- Following is the class structure of the Node class:
-
- class Node {
- public int data;
- public Node next;
-
- Node()
- {
- this.data = 0;
- this.next = null;
- }
-
- Node(int data)
- {
- this.data = data;
- this.next = null;
- }
-
- Node(int data, Node next)
- {
- this.data = data;
- this.next = next;
- }
- }
-
- *****************************************************************/
-
 public class DetectLoop {
 
     public static boolean detectCycle(Node head) {
         //floyd's cycle detection or tortoise-hare algo
 
-        //base case
-        if(head==null || head.next==null){
-            return false;
+        public boolean hasCycle(ListNode head) {
+            if (head == null) {
+                return false; // Empty list has no cycle
+            }
+
+            ListNode tortoise = head; // Tortoise starts at head
+            ListNode hare = head; // Hare also starts at head
+
+            while (hare != null && hare.next != null) {
+                tortoise = tortoise.next; // Move tortoise one step
+                hare = hare.next.next; // Move hare two steps
+
+                if (tortoise == hare) {
+                    return true; // Cycle detected
+                }
+            }
+
+            return false; // No cycle
         }
 
-        Node tortoise = head;
-        Node hare = head.next;
-        while(hare!=null){//until hare at end of linked list
-            if(hare==tortoise){
-                return true;//there is cycle
-            }
-            if(hare.next==null){//if hare at last element
-                return false;
-            }
-            hare=hare.next.next;
-            tortoise=tortoise.next;
-        }
-        return false;
     }
-}

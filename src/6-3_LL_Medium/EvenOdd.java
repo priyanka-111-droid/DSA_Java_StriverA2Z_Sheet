@@ -1,79 +1,24 @@
-/****************************************************************
-
- Following is the class structure of the Node class:
-
- class Node {
- public int data;
- public Node next;
-
- Node()
- {
- this.data = 0;
- this.next = null;
- }
- Node(int data)
- {
- this.data = data;
- this.next = null;
- }
- Node(int data, Node next)
- {
- this.data = data;
- this.next = next;
- }
- }
-
- *****************************************************************/
 
 public class EvenOdd
 {
-    public static Node segregateEvenOdd(Node head)
-    {
-        // Write Your Code Here.
+    public ListNode oddEvenList(ListNode head) {
         if (head == null || head.next == null) {
-            return head; // No need to rearrange for empty or single-node list
+            return head; // If the list is empty or has only one node, return it as is.
         }
 
-        Node evenHead = null, evenTail = null;
-        Node oddHead = null, oddTail = null;
-        Node current = head;
+        ListNode odd = head; // Pointer to the last odd node
+        ListNode even = head.next; // Pointer to the first even node
+        ListNode evenHead = even; // Keep track of the start of the even list
 
-
-        while (current != null) {
-            if (current.data % 2 == 0) {
-                //insert at end of even list
-
-                if (evenHead == null) {
-                    evenHead = current;
-                    evenTail = current;
-                } else {
-                    evenTail.next = current;
-                    evenTail = evenTail.next;
-                }
-            } else {
-                //insert at end of odd list
-                if (oddHead == null) {
-                    oddHead = current;
-                    oddTail = current;
-                } else {
-                    oddTail.next = current;
-                    oddTail = oddTail.next;
-                }
-            }
-            current = current.next;
+        // Rearranging nodes
+        while (even != null && even.next != null) {
+            odd.next = even.next; // Link the current odd node to the next odd node
+            odd = odd.next; // Move the odd pointer
+            even.next = odd.next; // Link the current even node to the next even node
+            even = even.next; // Move the even pointer
         }
 
-
-        //no even numbers
-        if (evenHead == null) {
-            return oddHead;
-        } else {
-            //connect odd linked list after even linked list.
-            evenTail.next = oddHead;
-            if (oddTail != null) {
-                oddTail.next = null;
-            }
-            return evenHead;
-        }
+        odd.next = evenHead; // Connect the end of odd list to the start of even list
+        return head; // Return the modified list
     }
 }
