@@ -1,58 +1,27 @@
-//ERROR IN JAVA CODE, SUBMITTED IN C++.
 
-/**
- * Definition of doubly linked list:
- * class Node {
- * public:
- *      int data;
- *      Node *prev;
- *      Node *next;
- *      Node() {
- *          this->data = 0;
- *          this->prev = NULL;
- *          this->next = NULL;
- *      }
- *      Node(int data) {
- *          this->data = data;
- *          this->prev = NULL;
- *          this->next = NULL;
- *      }
- *      Node (int data, Node *next, Node *prev) {
- *          this -> data = data;
- *          this -> prev = prev;
- *          this -> next = next;
- *      }
- * };
- *
- *************************************************************************/
-/*
-#include <iostream>
-#include <vector>
-#include <unordered_set>
-vector<pair<int, int>> findPairs(Node* head, int k)
-        {
-        // Write your code here.
-        vector<std::pair<int, int>> result;
-        unordered_set<int> seen_values;
+public class PairsWithGivenSum {
+    public static ArrayList<ArrayList<Integer>> findPairsWithGivenSum(int target, Node head) {
+        ArrayList<ArrayList<Integer>> ans= new ArrayList<>();
+        HashSet<Integer> hs= new HashSet<>();
 
-        Node* temp = head;
-
-        while (temp != nullptr) {
-        int complement = k - temp->data;
-
-        // Check if the complement value is in the set of seen values
-        if (seen_values.count(complement)) {
-        result.push_back({temp->data, complement});
+        Node temp=head;
+        while(temp!=null){
+            hs.add(temp.data);
+            temp=temp.next;
         }
 
-        // Add the current data value to the set of seen values
-        seen_values.insert(temp->data);
+        while(head!=null){
+            hs.remove(head.data);
+            if(hs.contains(target-head.data)){
+                ArrayList<Integer> l=new ArrayList<>();
 
-        temp = temp->next;
+                l.add(head.data);
+                l.add(target-head.data);
+
+                ans.add(l);
+            }
+            head=head.next;
         }
-
-        return result;
-
-        }
-
- */
+        return ans;
+    }
+}

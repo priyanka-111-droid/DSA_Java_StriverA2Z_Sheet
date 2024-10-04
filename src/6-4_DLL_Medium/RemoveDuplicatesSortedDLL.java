@@ -1,35 +1,23 @@
-/********************************************************
 
- Following is the class structure of the Node class:
-
- class Node
- {
- public:
- int data;
- Node next;
- Node(int data)
- {
- this.data = data;
- this.next = null;
- }
- };
-
- ********************************************************/
-//giving TLE...
 public class RemoveDuplicatesSortedDLL {
-    public static Node uniqueSortedList(Node head) {
-        if(head==null)
+    Node removeDuplicates(Node head){
+        //edge case
+        if(head==null || head.next==null)
             return head;
 
-        Node temp=head;
-        while(temp.next!=null)
-        {
-            if(temp.data == temp.next.data)
-            {
-                temp.next= temp.next.next;
+        Node current = head,temp = head.next;
+        while(temp!=null){
+            if(current.data!=temp.data){
+                current.next = temp;
+                temp.prev = current;
+                current = current.next;
             }
-            else
-                temp=temp.next;
+            temp = temp.next;
+        }
+
+        //edge case
+        if(current.next!=null){
+            current.next=null;
         }
         return head;
     }
