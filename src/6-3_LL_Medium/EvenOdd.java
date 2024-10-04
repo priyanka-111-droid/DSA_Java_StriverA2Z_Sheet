@@ -1,7 +1,11 @@
+/*
 
+- odd even pointer algo and rearranging
+ */
 public class EvenOdd
 {
     public ListNode oddEvenList(ListNode head) {
+        //edge case
         if (head == null || head.next == null) {
             return head; // If the list is empty or has only one node, return it as is.
         }

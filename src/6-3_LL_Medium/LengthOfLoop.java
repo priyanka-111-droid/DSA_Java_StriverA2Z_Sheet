@@ -1,7 +1,11 @@
+/*
+- tortoise-hare algo and counting length of loop/cycle
+ */
 public class LengthOfLoop
 {
     // Function to find the length of a loop in the linked list.
     public int countNodesinLoop(Node head) {
+        //edge case
         if(head==null || head.next==null){
             return 0;
         }

@@ -1,47 +1,27 @@
-/****************************************************************
+/*
+Input: head = [1,3,4,7,1,2,6]
+Output: [1,3,4,1,2,6]
 
- Following is the class structure of the Node class:
-
- class Node {
- public int data;
- public Node next;
-
- Node()
- {
- this.data = 0;
- this.next = null;
- }
-
- Node(int data)
- {
- this.data = data;
- this.next = null;
- }
-
- Node(int data, Node next)
- {
- this.data = data;
- this.next = next;
- }
- };
-
- *****************************************************************/
-
+- tortoise-hare algo with prev node.
+ */
 public class DeleteMiddle {
-    public static Node deleteMiddle(Node head) {
-        if(head.next==null || head==null){
+    public ListNode deleteMiddle(ListNode head) {
+        //edge case
+        //if list empty or only 1 node,return null
+        if(head==null || head.next==null){
             return null;
         }
-        Node hare=head;
-        Node tortoise=head;
-        Node prev=null;
+        //get middle node of linked list
+        ListNode hare = head;
+        ListNode tortoise = head;
+        ListNode prev = null;//track prev node
         while(hare!=null && hare.next!=null){
-            hare=hare.next.next;
-            prev=tortoise;
-            tortoise=tortoise.next;
+            prev=tortoise;//track prev node.
+            hare = hare.next.next;
+            tortoise = tortoise.next;
         }
-        prev.next=tortoise.next;
+        ListNode temp = tortoise.next;
+        prev.next = temp;
         return head;
-
     }
 }
