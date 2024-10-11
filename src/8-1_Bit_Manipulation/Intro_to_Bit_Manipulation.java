@@ -25,10 +25,12 @@ public class Intro_to_Bit_Manipulation {
         //we will ‘AND’(&) with the number ‘num’
         //that will unset bit at nth position position.
     }
-    public static int[] bitManipulation(int num, int i){
+    static void bitManipulation(int num, int i) {
+        // code here
         int get = getBitAtPos(i,num);
         int set = setBitAtPos(i,num);
         int clear = clearBitAtPos(i, num);
-        return new int[]{get,set,clear};
+
+        System.out.print(get+" "+set+" "+clear);
     }
 }
